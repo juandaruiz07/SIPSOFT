@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template.xhtml">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+    <h:outputScript library="css" name="styles.css"/>
+    <ui:define name="title"> Registro Usuario</ui:define>
+
+    <ui:define name="content">
+        <h:form rendered="#{seguridadBean.autenticado}">
+<center>
+
+            <table border="4" width="920px" align="center" cellspacing="2" cellpadding="5">
+                <tbody background="/img/fondoEmpleado.png">
+                <tr>
+                    <td width="250px" align="center">
+
+                        <div class="mt-4">
+                            <p:card style="width: 35rem; margin-bottom: 2em">
+                                <f:facet name="title">
+                                    Actualizar Empleado
+                                </f:facet>
+
+                                <div class="mt-4">
+
+                                        <h:panelGrid columns="3" cellpadding="6">
+
+                                            <p:outputLabel value="Documento del Empleado: " for="codigo_u"/>
+                                            <p:inputText id="codigo_u" value="#{usuarioBean.cedulaActualizar2}"
+                                                         required="true"/>
+                                            <p:message for="codigo_u"/>
+
+
+                                            <p:outputLabel value="Nombre Completo: " for="nombre_u"/>
+                                            <p:inputText id="nombre_u" value="#{usuarioBean.nombreActualizar2}"
+                                                         required="false"/>
+                                            <p:message for="nombre_u"/>
+
+
+                                            <p:outputLabel value="Direccion: " for="direccion_u"/>
+                                            <p:inputText id="direccion_u" value="#{usuarioBean.direccionActualizar2}"
+                                                         required="false"/>
+                                            <p:message for="direccion_u"/>
+
+
+                                            <p:outputLabel value="Correo: " for="correo_u"/>
+                                            <p:inputText id="correo_u" value="#{usuarioBean.correoEmpleado}"
+                                                         required="false"/>
+                                            <p:message for="correo_u"/>
+
+
+                                            <p:outputLabel for="cargo" value="Cargo"/>
+                                            <p:selectOneMenu id="cargo" value="#{usuarioBean.cargoCodigoActualizar2}" dynamic="true">
+                                                <f:selectItem itemLabel="Seleccione un cargo" itemValue=""/>
+                                                <f:selectItems value="#{usuarioBean.nombresCargos}"/>
+                                            </p:selectOneMenu>
+                                            <p:message for="cargo"/>
+
+
+                                            <p:outputLabel for="Jefe" value="Jefe"/>
+                                            <p:selectOneMenu id="Jefe" value="#{usuarioBean. jefeInmediatoActualizar2}"
+                                                             dynamic="true">
+                                                <f:selectItem itemLabel="Seleccione jefe inmediato" itemValue=""/>
+                                                <f:selectItems value="#{usuarioBean.nombresEmpleados}"/>
+                                            </p:selectOneMenu>
+                                            <p:message for="cargo"/>
+
+
+                                            <p:outputLabel for="contrato" value="Tipo Contrato"/>
+                                            <p:selectOneMenu id="contrato" value="#{usuarioBean.tipoContratoActualizar2}"
+                                                             dynamic="true">
+                                                <f:selectItem itemLabel="Seleccione tipo contrato" itemValue=""/>
+                                                <f:selectItems value="#{usuarioBean.nombresContratos}"/>
+                                            </p:selectOneMenu>
+                                            <p:message for="contrato"/>
+
+
+                                            <p:outputLabel value="Clave" for="clave"/>
+                                            <p:inputText id="clave" value="#{usuarioBean.claveActualizar2}"/>
+                                            <p:message for="clave"/>
+
+
+                                        </h:panelGrid>
+                                        <p:growl for="mensajeEmpleado" showDetail="true"/>
+                                        <br/>
+
+                                        <div align="center">
+                                            <p:commandButton value="Buscar Empleado" icon="pi pi-search"
+                                                             action="#{usuarioBean.buscarEmpleado}" update="@form"/>
+
+
+                                                <p:commandButton styleClass="ui-button-raised ui-button-warning"
+                                                                 type="submit"
+                                                                 value="Actualizar Empleado"
+                                                                 action="#{usuarioBean.actualizarEmpleado}"
+                                                                 update="@form"/>
+
+
+                                            <p:growl for="mensajeEmpleado" showDetail="true"/>
+
+                                        </div>
+
+
+
+
+                                </div>
+
+                            </p:card>
+                        </div>
+
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+</center>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>

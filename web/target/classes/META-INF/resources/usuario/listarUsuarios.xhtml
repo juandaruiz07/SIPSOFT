@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<h:outputStylesheet library="css" name="bootstrap.min.css" />
+<h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+<ui:composition template="/WEB-INF/template2.xhtml">
+    <ui:define name="title">Administrador</ui:define>
+    <div class="mt-4">
+        <ui:define name="content" >
+            <div id="container">
+
+
+                <table id="shoppingCart" class="table table-condensed table-responsive">
+                    <thead>
+                    <tr>
+                        <th style="width:60%">Nombre</th>
+                        <th style="width:12%">Codigo</th>
+                        <th style="width:10%">Correo</th>
+                        <th style="width:10%">Contraseña</th>
+                        <th style="width:10%">Ciudad</th>
+                        <th style="width:16%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <p:repeat value="#{seguridadBean.usuarios}" var="usuario" varStatus="u">
+                        <tr>
+                            <td >
+
+                                        <h4>#{usuario.nombre}</h4>
+
+
+                            </td>
+                            <td >#{usuario.codigo}</td>
+                            <td>
+                                #{usuario.email}
+                            </td>
+                            <td>
+                                #{usuario.password}
+                            </td>
+                            <td>
+                                #{usuario.ciudad.nombre}
+                            </td>
+                            <td >
+                                <div class="text-right">
+
+                                    <p:commandButton value="Actualizar Usuario" styleClass="btn-primary" action="#{seguridadBean.actualizarUsuario(usuario)}"/>
+
+                                </div>
+                            </td>
+                            <td >
+                                <div class="text-right">
+                                    <p:commandButton value="Eliminar Usuario" styleClass="btn btn-danger"  action="#{seguridadBean.eliminarUsuario(usuario.codigo)}"/>
+
+                                </div>
+                            </td>
+
+
+                        </tr>
+
+
+                    </p:repeat>
+
+
+
+
+
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </ui:define>
+    </div>
+</ui:composition>
+</html>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+    <title> Unishop | <ui:insert name="title"> Plantilla</ui:insert></title>
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+    <h:outputScript library="css" name="styles.css"/>
+</h:head>
+<h:body>
+
+
+
+
+
+
+
+
+
+
+
+    <div id="header" >
+
+        <nav class="py-2 bg-gradient border-bottom " >
+            <div class="container d-flex flex-wrap">
+                <ul class="nav me-auto ">
+
+
+                    <h:form rendered="#{seguridadBean.autenticado}" >
+
+                        <li class="nav-item me-lg-1">   <p:commandButton value="Registrar Nuevo Administrador" styleClass="ui-button-raised ui-button-secondary" action="usuario/registrarProducto.xhtml"  /></li>
+                    </h:form>
+                    <h:form rendered="#{seguridadBean.autenticado}" >
+
+                        <li class="nav-item me-lg-1">  <p:commandButton value="Listar Usuarios" styleClass="ui-button-raised ui-button-secondary" action="/usuario/listarUsuarios.xhtml"  /></li>
+
+                    </h:form>
+
+
+
+
+
+
+
+
+
+
+
+                    <h:form rendered="#{seguridadBean.autenticado}">
+
+                        <li class="nav-item me-lg-1">   <p:commandButton value="Cerrar sesion" styleClass="btn btn-primary" style="align-items: end"
+                                                                         action="#{seguridadBean.cerrarSesion}"/></li>
+                    </h:form>
+
+
+
+
+                </ul>
+            </div>
+        </nav>
+        <div class="container d-flex flex-wrap justify-content-center">
+            <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+                <i class="pi pi-shopping-cart" style="font-size: 3rem;margin-right: 7px"/>
+                <span class="fs-4"><h1>Unishop</h1></span>
+            </a>
+            <h:form>
+
+                <p:inputText placeholder="¿Buscar Producto?" required="true" value="#{busquedaBean.busqueda}"/>
+                <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form"/>
+
+            </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+            <marquee>  Tenemos las mejores ofertas para ti  &nbsp;&nbsp; <i class="pi pi-dollar" style="font-size: 15px"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Registrate y participa por premios &nbsp;&nbsp;&nbsp;
+                <i class="pi pi-briefcase" style="font-size: 15px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                Todas tus compras estan respaldadas &nbsp;&nbsp; <i class="pi pi-shield" style="font-size: 15px"/></marquee>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <div id="content" class="mt-5">
+        <div class="container">
+
+            <ui:insert name="content">Contenido del documento</ui:insert>
+        </div>
+
+    </div>
+
+
+
+
+    <div id="footer" class="footer mt-4">
+        <ui:insert name="footer">
+            <div class="py-4 bg-light" align="center">
+                <div class="justify-content-center" >
+                    <div class="col-10" >
+                        <span>Universidad del Quindío - Programación avanzada - 2021</span> </div>
+                </div>
+            </div>
+        </ui:insert>
+    </div>
+</h:body>
+</html>

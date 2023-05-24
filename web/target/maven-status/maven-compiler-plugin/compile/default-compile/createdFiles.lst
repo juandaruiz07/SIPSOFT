@@ -1,0 +1,8 @@
+co\edu\uniquindio\proyecto\bean\WsConfig.class
+co\edu\uniquindio\proyecto\bean\InicioBean.class
+co\edu\uniquindio\proyecto\bean\ProductoBean.class
+co\edu\uniquindio\proyecto\bean\SeguridadBean.class
+co\edu\uniquindio\proyecto\Config\PaginaPrincipalConfig.class
+co\edu\uniquindio\proyecto\filtro\SeguridadFilter.class
+co\edu\uniquindio\proyecto\WebApplication.class
+co\edu\uniquindio\proyecto\bean\UsuarioBean.class

@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT   -Xms256m -Xmx256m -Xss512k -XX:NativeMemoryTracking=detail -XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics    -jar $PATH_TO_JAR co.edu.uniquindio.proyecto.WebApplication

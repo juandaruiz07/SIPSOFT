@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<h:outputStylesheet library="css" name="bootstrap.min.css" />
+<h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+<ui:composition template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Perfil</ui:define>
+    <div class="mt-4">
+        <ui:define name="content" >
+
+            <div id="infoUsuario" class="container">
+                <h:form id="form">
+                    <h:panelGrid columns="2" cellpadding="5">
+
+
+                        <p:outputLabel value="Cedula o Identificacion: "/>
+                        <p:outputLabel value="#{seguridadBean.usuarioSesion.codigo}" />
+                        <p:outputLabel value="Nombre :"/>
+                        <p:outputLabel value="#{seguridadBean.usuarioSesion.nombre}" />
+                        <p:outputLabel value="Correo electronico: "/>
+                        <p:outputLabel value="#{seguridadBean.usuarioSesion.email}" />
+                        <p:outputLabel value="Ciudad: "/>
+                        <p:outputLabel value="#{seguridadBean.usuarioSesion.ciudad.nombre}" />
+                        <p:outputLabel value="Telefonos: "/>
+                        <p:outputLabel value="#{seguridadBean.mostrarTelefonos(seguridadBean.usuarioSesion.codigo)}" />
+                        <p:outputLabel value="Productos publicados: "/>
+                        <p:outputLabel value="#{seguridadBean.productosPublicados(seguridadBean.usuarioSesion.codigo)}"/>
+
+
+
+
+                    </h:panelGrid>
+                    <p:commandButton styleClass="mt-4" value="Ver mis productos Publicados" action="#{seguridadBean.productosPublicadosUsuario(seguridadBean.usuarioSesion.codigo)}" update="@form"/>
+
+                </h:form>
+
+
+
+
+
+            </div>
+
+        </ui:define>
+    </div>
+</ui:composition>
+</html>

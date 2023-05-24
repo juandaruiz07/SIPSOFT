@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<h:outputStylesheet library="css" name="bootstrap.min.css" />
+<h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+<ui:composition template="/WEB-INF/template2.xhtml">
+<ui:define name="title">Administrador</ui:define>
+<div class="mt-4">
+<ui:define name="content" >
+<div id="container">
+<h:form>
+
+
+    <h:panelGrid columns="3" cellpadding="5">
+
+        <p:outputLabel value="Cedula o Numero de Identificacion:" for="codigo_u"/>
+        <p:inputText id="codigo_u" value="#{seguridadBean.usuarioModificado.codigo}" required="true"/>
+        <p:message for="codigo_u"/>
+
+        <p:outputLabel value="Nombre Completo" for="nombre_u"/>
+        <p:inputText id="nombre_u" value="#{seguridadBean.usuarioModificado.nombre}" required="true" />
+        <p:message for="nombre_u"/>
+
+        <p:outputLabel value="Correo electronico:" for="email_u"/>
+        <p:inputText id="email_u" value="#{seguridadBean.usuarioModificado.email}" required="true"/>
+        <p:message for="email_u"/>
+
+        <p:outputLabel value="Telefono Fijo:" for="telefono_u"/>
+        <p:inputText id="telefono_u" value="#{seguridadBean.usuarioModificado.telefono.get(0)}" required="true"/>
+        <p:message for="telefono_u"/>
+
+        <p:outputLabel value="Celular:" for="celular_u"/>
+        <p:inputText id="celular_u" value="#{seguridadBean.usuarioModificado.telefono.get(1)}" required="true"/>
+        <p:message for="celular_u"/>
+
+
+
+        <p:outputLabel value="Ciudad:" for="ciudad_u"/>
+        <p:selectOneMenu id="ciudad_u" value="#{usuarioBean.usuario.ciudad}" converter="#{ciudadConverter}" required="true" >
+            <f:selectItem itemLabel="Seleccione una ciudad" noSelectionOption="true"/>
+            <f:selectItems value="#{usuarioBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}"/>
+        </p:selectOneMenu>
+        <p:message for="ciudad_u"/>
+
+        <p:outputLabel value="Contraseña:" for="pass_u"/>
+        <p:password id="pass_u" value="#{seguridadBean.usuarioModificado.password}" required="true" />
+        <p:message for="pass_u"/>
+
+
+    </h:panelGrid>
+    <p:growl showDetail="true" for="msj-bean"/>
+
+    <p:commandButton styleClass="mt-4" value="Actualizar Usuario" action="#{seguridadBean.actualizarUsuario(seguridadBean.usuarioModificado)}" update="@form"/>
+</h:form>
+
+</div>
+</ui:define>
+</div>
+</ui:composition>
+</html>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Inicio</ui:define>
+    <div class="mt-4">
+        <ui:define name="content">
+            <h:form>
+
+
+                <center>
+
+<!-- -->
+
+                    <p:card style="width: 600px" rendered="#{seguridadBean.autenticado}">
+                        <f:facet name="title" >
+                            <p:outputLabel value="¡ALERTA!" rendered="#{usuarioBean.renderMensajeLow}"
+                                           style="color: #{usuarioBean.color}"
+                            />                        </f:facet>
+
+                        <div>
+                            <p:outputLabel
+                                    value="Tienes #{usuarioBean.productosAgotados} productos por debajo de la cantidad minima de unidades"
+                                    rendered="#{usuarioBean.renderMensajeLow}"
+                                    style="font-max-size: medium;color:#{usuarioBean.color}"
+                            />
+                        </div>
+                        <div>
+
+                            <p:commandButton action="#{usuarioBean.redirigirLow()}"
+                                             type="submit" value="Ver Productos" update="@form"
+                                             rendered="#{usuarioBean.renderMensajeLow}"
+                                             styleClass="ui-button-outlined ui-button-danger"
+                            />
+                        </div>
+                    </p:card>
+
+
+
+
+
+
+                    <p:panel header="Gestion de Productos" footer="MilHerrajes 2023" style="width: 1200px"
+                             rendered="#{seguridadBean.autenticado}">
+                        <table width="900px" align="center">
+                            <tr>
+                                <td>
+                                    <p:outputLabel for="@next" value="Productos :"/>
+                                </td>
+                                <td>
+                                    <p:selectOneMenu value="#{usuarioBean.nombreProductoSelecc}"
+                                                     dynamic="true" rendered="#{seguridadBean.autenticado}">
+                                        <f:selectItem itemLabel="Seleccione producto" itemValue=""/>
+                                        <f:selectItems value="#{usuarioBean.nombresProductos}"/>
+                                    </p:selectOneMenu>
+                                </td>
+                                <td>
+                                    <p:outputLabel value="Cantidad :" rendered="#{seguridadBean.autenticado}"/>
+                                </td>
+                                <td>
+                                    <p:inputText value="#{usuarioBean.unidadesVendidas}"
+                                                 rendered="#{seguridadBean.autenticado}"/>
+                                </td>
+                                <td>
+                                    <p:commandButton type="submit" icon="pi pi-shopping-cart" value="Ingresar Venta"
+                                                     styleClass="ui-button-raised ui-button-secondary"
+                                                     action="#{usuarioBean.ingresarVenta()}" update="@form"
+                                                     rendered="#{seguridadBean.autenticado}"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        </br>
+                        <table width="700px" align="center">
+                            <tr>
+                                <td>
+                                    <p:outputLabel value="Buscar producto :  "
+                                                   rendered="#{seguridadBean.autenticado}"/>
+
+
+                                    <p:autoComplete id="acSimple" value="#{usuarioBean.productoAutoCompletado}"
+                                                    completeMethod="#{usuarioBean.completeText}" scrollHeight="250"
+                                                    rendered="#{seguridadBean.autenticado}"/>
+
+
+                                    <p:commandButton type="submit" icon="pi pi-search"
+                                                     styleClass="rounded-button ui-button-success"
+                                                     action="#{usuarioBean.buscarCantidadUnidades()}" update="@form"
+                                                     rendered="#{seguridadBean.autenticado}"/>
+
+                                </td>
+                                <td>
+                                    <p:outputLabel value="Codigo : "
+
+                                                   rendered="#{seguridadBean.autenticado}"/>
+                                </td>
+                                <td>
+
+                                    <p:outputLabel value="#{usuarioBean.codigoProductoBuscado}"
+                                                   rendered="#{seguridadBean.autenticado}"/>
+                                </td>
+                                <td>
+
+                                    <p:outputLabel value="Cantidad : "
+                                                   rendered="#{seguridadBean.autenticado}"/>
+                                </td>
+                                <td>
+                                    <p:outputLabel value="#{usuarioBean.cantidadProductoBuscado}"
+                                                   rendered="#{seguridadBean.autenticado}"/>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <br>
+
+                        </br>
+
+
+                        <table width="900px">
+                            <tr>
+                                <td align="center" width="600">
+                                    <p:graphicImage value="/img/logop.png"
+                                                    class="img-fluid  d-md-block rounded mb-2 shadow"
+                                                    rendered="#{!seguridadBean.autenticado}"/>
+                                    <div class="grid">
+                                        <div class="col-12 lg:col-6 xl:col-4">
+                                            <div class="card">
+                                                <p:pieChart model="#{usuarioBean.pieModel}"
+                                                            style="width: 60%; height: 300px;"
+                                                            rendered="#{seguridadBean.autenticado}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </p:panel>
+
+
+                    <br>
+                    </br>
+
+                    <p:growl showDetail="true" for="mensajeVenta"/>
+
+                </center>
+            </h:form>
+
+        </ui:define>
+    </div>
+</ui:composition>
+</html>

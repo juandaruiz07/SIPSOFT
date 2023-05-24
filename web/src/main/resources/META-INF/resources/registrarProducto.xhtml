@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template.xhtml">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+    <h:outputScript library="css" name="styles.css"/>
+    <ui:define name="title"> Registro Usuario</ui:define>
+
+    <ui:define name="content">
+        <h:form rendered="#{seguridadBean.autenticado}">
+
+            <table border="4" width="920px" align="center" cellspacing="2" cellpadding="5" bgcolor="#f0f8ff">
+                <tbody background="/img/fondoProducto.png">
+                <tr>
+                    <td width="250px" align="center">
+
+
+
+                        <div class="mt-4">
+                            <p:card style="width: 35rem; margin-bottom: 2em">
+                                <f:facet name="title">
+                                    Registro Producto
+                                </f:facet>
+
+
+                                <h:panelGrid columns="3" cellpadding="5">
+
+                                    <p:outputLabel value="Codigo: " for="codigo_u"/>
+                                    <p:inputText id="codigo_u" value="#{usuarioBean.codigoRegistro3}" required="true"/>
+                                    <p:message for="codigo_u"/>
+
+                                    <p:outputLabel value="Cantidad" for="nombre_u"/>
+                                    <p:inputText id="nombre_u" value="#{usuarioBean.cantidadRegistro3}" required="true"/>
+                                    <p:message for="nombre_u"/>
+
+                                    <p:outputLabel value="Categoria" for="email_u"/>
+                                    <p:inputText id="email_u" value="#{usuarioBean.categoriaRegistro3}" required="true"/>
+                                    <p:message for="email_u"/>
+
+                                    <p:outputLabel value="Nombre" for="telefono_u"/>
+                                    <p:inputText id="telefono_u" value="#{usuarioBean.nombreRegistro3}" required="true"/>
+                                    <p:message for="telefono_u"/>
+
+                                    <p:outputLabel value="Precio Compra:" for="celular_u"/>
+                                    <p:inputText id="celular_u" value="#{usuarioBean.precioCompraRegistro3}"
+                                                 required="true"/>
+                                    <p:message for="celular_u"/>
+
+
+                                    <p:outputLabel value="Precio Venta:" for="precioVenta"/>
+                                    <p:inputText id="precioVenta" value="#{usuarioBean.precioVentaRegistro3}"
+                                                 required="true"/>
+                                    <p:message for="precioVenta"/>
+
+
+                                </h:panelGrid>
+                                <p:growl showDetail="true" for="mensajeProducto"/>
+                                <br/>
+                                <br/>
+                                <div align="center">
+
+                                    <p:commandButton styleClass="rounded-button ui-button-success" value="Registrar Producto"
+                                                     action="#{usuarioBean.registrarProducto}" update="@form"/>
+                                </div>
+                                <p:growl for="mensajeProducto" showDetail="true"/>
+                                <br/>
+                                <br/>
+
+
+
+
+
+
+                            </p:card>
+
+
+                            <p:growl for="mensajeCliente" showDetail="true"/>
+
+
+
+
+                        </div>
+
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>

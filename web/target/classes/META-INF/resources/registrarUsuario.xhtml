@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template.xhtml">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+    <h:outputScript library="css" name="styles.css"/>
+    <ui:define name="title"> Registro Usuario</ui:define>
+
+    <ui:define name="content">
+
+        <table border="4" width="1000px" align="center" cellspacing="2" cellpadding="5" bgcolor="#f0f8ff">
+            <tr>
+                <td width="250px" align="center">
+                    <div class="mt-4">
+                        <font face="Verdana" size="4"> Registrar Cliente </font>
+                        <br></br>
+                        <br></br>
+
+
+                        <h:form rendered="#{seguridadBean.autenticado}">
+
+
+                            <h:panelGrid columns="3" cellpadding="5">
+
+                                <p:outputLabel value="Cedula " for="codigo_u"/>
+                                <p:inputText id="codigo_u" value="#{usuarioBean.cedulaRegistro}" required="true"/>
+                                <p:message for="codigo_u"/>
+
+                                <p:outputLabel value="Nombre Completo" for="nombre_u"/>
+                                <p:inputText id="nombre_u" value="#{usuarioBean.nombreRegistro}" required="true"/>
+                                <p:message for="nombre_u"/>
+
+                                <p:outputLabel value="Correo electronico:" for="email_u"/>
+                                <p:inputText id="email_u" value="#{usuarioBean.correoRegistro}" required="true"/>
+                                <p:message for="email_u"/>
+
+                                <p:outputLabel value="Nit: " for="telefono_u"/>
+                                <p:inputText id="telefono_u" value="#{usuarioBean.nitRegistro}" required="true"/>
+                                <p:message for="telefono_u"/>
+
+                                <p:outputLabel value="Direccion:" for="celular_u"/>
+                                <p:inputText id="celular_u" value="#{usuarioBean.direccionRegistro}" required="true"/>
+                                <p:message for="celular_u"/>
+
+
+                            </h:panelGrid>
+                            <p:growl showDetail="true" for="msj-bean"/>
+                            <br/>
+                            <br/>
+                            <div align="center">
+
+                                <p:commandButton styleClass="rounded-button ui-button-success" value="Registrar Cliente"
+                                                 action="#{usuarioBean.registrarCliente}" update="@form"/>
+                            </div>
+                            <p:growl for="mensajeCliente" showDetail="true"/>
+                        </h:form>
+
+                    </div>
+                </td>
+                <td width="250px">
+                    <div class="mt-4">
+                        <center>
+                            <font face="Verdana" size="4"> Actualizar Cliente </font>
+                        </center>
+                        <br></br>
+                        <br></br>
+                        <h:form>
+
+
+                            <h:panelGrid columns="3" cellpadding="6">
+
+                                <p:outputLabel value="Cedula del Cliente a modificar " for="codigo_u"/>
+                                <p:inputText id="codigo_u" value="#{usuarioBean.cedulaEditar}" required="true"/>
+                                <p:message for="codigo_u"/>
+
+
+                                <p:outputLabel value="Nombre Completo" for="nombre_u"/>
+                                <p:inputText id="nombre_u" value="#{usuarioBean.nombreEditar}" required="false"/>
+                                <p:message for="nombre_u"/>
+
+                                <p:outputLabel value="Correo electronico:" for="email_u"/>
+                                <p:inputText id="email_u" value="#{usuarioBean.correoEditar}" required="false"/>
+                                <p:message for="email_u"/>
+
+                                <p:outputLabel value="Nit: " for="telefono_u"/>
+                                <p:inputText id="telefono_u" value="#{usuarioBean.nitEditar}" required="false"/>
+                                <p:message for="telefono_u"/>
+
+                                <p:outputLabel value="Direccion:" for="celular_u"/>
+                                <p:inputText id="celular_u" value="#{usuarioBean.direccionEditar}" required="false"/>
+                                <p:message for="celular_u"/>
+
+
+                            </h:panelGrid>
+                            <p:growl for="mensajeCliente" showDetail="true"/>
+                            <br/>
+
+                            <div align="center">
+                                <h:commandButton value="Buscar Cliente"
+                                                 action="#{usuarioBean.buscarCliente2}" update="@form"/>
+
+
+                                <p:commandButton styleClass="rounded-button ui-button-warning"
+                                                 value="Actualizar Cliente"
+                                                 action="#{usuarioBean.actualizarCliente}" update="@form"/>
+                                <p:growl for="mensajeCliente" showDetail="true"/>
+
+                            </div>
+
+                        </h:form>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+
+                <td width="250px">
+                    <div class="mt-4">
+                        <center>
+                            <font face="Verdana" size="4"> Buscar Cliente </font>
+                        </center>
+                        <br></br>
+                        <br></br>
+                        <h:form>
+
+                            <h:panelGrid columns="3" cellpadding="5">
+
+                                <p:outputLabel value="Cedula " for="codigo_u"/>
+                                <p:inputText id="codigo_u" value="#{usuarioBean.cedulaBuscar}" required="true"/>
+                                <p:message for="codigo_u"/>
+
+
+                            </h:panelGrid>
+                            <p:growl showDetail="true" for="msj-bean"/>
+                            <br/>
+                            <div align="center">
+                                <h:commandButton value="Buscar Cliente"
+                                                 action="#{usuarioBean.buscarCliente}" update="@form"/>
+                            </div>
+
+                            <br/>
+                            <br/>
+
+
+                            <h:panelGrid columns="3" cellpadding="6" rendered="#{usuarioBean.renderBuscar}">
+
+
+
+
+                                <p:outputLabel value="Nombre Completo" for="nombre_u"/>
+                                <p:inputText id="nombre_u" value="#{usuarioBean.nombreBuscar}" required="false"/>
+                                <p:message for="nombre_u"/>
+
+                                <p:outputLabel value="Correo electronico:" for="email_u"/>
+                                <p:inputText id="email_u" value="#{usuarioBean.correoBuscar}" required="false"/>
+                                <p:message for="email_u"/>
+
+                                <p:outputLabel value="Nit: " for="telefono_u"/>
+                                <p:inputText id="telefono_u" value="#{usuarioBean.nitBuscar}" required="false"/>
+                                <p:message for="telefono_u"/>
+
+                                <p:outputLabel value="Direccion:" for="celular_u"/>
+                                <p:inputText id="celular_u" value="#{usuarioBean.direccionBuscar}" required="false"/>
+                                <p:message for="celular_u"/>
+
+
+                            </h:panelGrid>
+
+
+                            <p:growl for="mensajeCliente" showDetail="true"/>
+                            <br/>
+
+                            <div align="center">
+
+
+                                <p:growl for="mensajeCliente" showDetail="true"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </td>
+                <td width="250px">
+
+                    <div class="mt-4">
+                        <center>
+                            <font face="Verdana" size="4"> Eliminar Cliente </font>
+                        </center>
+                        <br></br>
+                        <br></br>
+                        <h:form>
+
+
+                            <h:panelGrid columns="3" cellpadding="5">
+
+                                <p:outputLabel value="Cedula " for="codigo_u"/>
+                                <p:inputText id="codigo_u" value="#{usuarioBean.cedulaEliminar}" required="true"/>
+                                <p:message for="codigo_u"/>
+
+
+                            </h:panelGrid>
+                            <p:growl showDetail="true" for="msj-bean"/>
+                            <br/>
+                            <div align="center">
+                                <p:commandButton value="Eliminar Cliente" styleClass="rounded-button ui-button-danger" type="button"
+                                                 icon="pi pi-trash" onclick="PF('dlg2').show()"
+                                                 update="@form"/>
+
+
+
+                                <p:dialog header="¿Eliminar Cliente?" widgetVar="dlg2" minHeight="40" width="450"
+                                          showEffect="fade" modal="true">
+                                    <div align="center">
+
+
+                                    <p:commandButton type="button" value="No, Dejarlo vivir" styleClass="rounded-button ui-button-info" onclick="PF('dlg2').hide()"/>
+
+                                    <p:commandButton type="submit" value="Si, Eliminar Cliente" action="#{usuarioBean.eliminarCliente}"   styleClass="rounded-button ui-button-danger" update="@form" />
+                                    </div>
+
+
+                                </p:dialog>
+                                <p:growl for="mensajeCliente" showDetail="true"/>
+                            </div>
+                            <p:growl for="mensajeCliente" showDetail="true"/>
+                        </h:form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </ui:define>
+</ui:composition>
+</html>

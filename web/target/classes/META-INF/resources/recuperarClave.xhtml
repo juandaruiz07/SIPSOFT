@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Inicio</ui:define>
+    <div class="mt-4">
+        <ui:define name="content">
+            <h:form>
+
+
+                <center>
+                    <div align="center">
+                        <h4>Ingrese el correo registrado en el sistema asociado a su cuenta</h4>
+
+                        <p>
+                            Se enviara un mensaje a su correo con la contraseña guardada en sistema.
+                        </p>
+
+                    </div>
+
+                    <h:panelGrid columns="3" cellpadding="5" style="width: 600px; alignment: center">
+
+                        <p:outputLabel value="Correo" for="correo_u"/>
+                        <p:inputText id="correo_u" value="#{usuarioBean.correoEmpleado}" required="true"/>
+                        <p:message for="correo_u"/>
+
+
+
+                    </h:panelGrid>
+                    <div align="center">
+                    <p:commandButton value="Enviar contraseña" type="submit"
+                                     icon="pi pi-send" action="#{usuarioBean.enviarClave()}"
+                                     update="@form"/>
+                    </div>
+
+                    <p:growl for="mensajeEnvio" showDetail="true"/>
+
+                </center>
+            </h:form>
+
+        </ui:define>
+    </div>
+</ui:composition>
+</html>
