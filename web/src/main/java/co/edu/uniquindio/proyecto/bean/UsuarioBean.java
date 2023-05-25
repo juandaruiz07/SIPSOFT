@@ -763,7 +763,7 @@ public class UsuarioBean implements Serializable {
 
     }
 
-
+//Metodo que llena los contratos en las listas
     public void llenarNombresContratos() {
 
         nombresContratos = new ArrayList<>();
